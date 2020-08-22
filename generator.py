@@ -23,7 +23,7 @@ adjectives = getWords('adjectives.txt')
 
 """Builds sentence."""
 def sentence():    
-    return nounPhrase() + " " + verbPhrase()
+    return nounPhrase() + " " + verbPhrase() + "."
 
 """Returns a noun phrase."""
 def nounPhrase():   
@@ -32,8 +32,8 @@ def nounPhrase():
 """Returns a verb phrase."""
 def verbPhrase():    
     prepphrase = ""
-    prepchance = random.randrange(100) + 1
-    if(prepchance > 60):
+    prepchance = random.randrange(101) + 1
+    if(prepchance > 70):
         prepphrase = prepositionalPhrase()
     return random.choice(verbs) + " " + nounPhrase() + " " + prepphrase
 
@@ -41,21 +41,21 @@ def verbPhrase():
 def prepositionalPhrase():
     conjphrase = ""
     conjchance = random.randrange(100) + 1
-    if (conjchance > 55):
+    if (conjchance > 90):
         conjphrase = conjunctionPhrase()
-    return random.choice(prepositions) + " " + conjphrase + " " + nounPhrase()
+    return random.choice(prepositions) + " " + random.choice(articles) + " " + conjphrase + " " + nounPhrase() + " " + verbPhrase()
 
 """Connects an adjective phrase."""
 def AdjectivePhrase():    
-    return random.choice(articles) + random.choice(adjectives) + nounPhrase + " " + verbPhrase() + " " + conjunctions
+    return random.choice(adjectives) + " " + verbPhrase() + " " + conjunctions + " " + nounPhrase()
 
-"""Returns a phrase with or without an adjective."""
+"""Optional conjunctional phrase."""
 def conjunctionPhrase():
-    adjphrase = ""
+    adjphrase = ""    
     adjchance = random.randrange(100)+1
-    if (adjchance > 80):
+    if (adjchance > 70):
         adjphrase = AdjectivePhrase()
-    return random.choice(conjunctions) + random.choice(adjectives) + random.choice(articles) + " " + nounPhrase() + " " + adjphrase
+    return random.choice(conjunctions) + " " + random.choice(adjectives) + " " + random.choice(articles) + " " + nounPhrase() + " " + adjphrase
 
 """Asks the user for number of sentences to be generated."""
 def main():    
